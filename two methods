@@ -1,0 +1,42 @@
+Lagrange Method
+# Method 1
+from sympy import *
+x, y, z, lamda = symbols('x y z lamda', real=True)
+
+def lagrange_method(f):
+  
+  df_x=diff(f, x)
+  df_y=diff(f, y)
+  df_z=diff(f,z)
+  df_lamda=diff(f, lamda)
+  
+  solution = solve((df_x, df_y, df_z, df_lamda), x,y,z,lamda)
+  
+  return solution
+
+f=eval(input("Please Enter the equation:"))
+print(lagrange_method(f))
+
+/..
+The following is result
+>>
+Please Enter the equation:x+y+lamda*(x**2+y**2-1)
+[{lamda: -sqrt(2)/2, x: sqrt(2)/2, y: sqrt(2)/2}, {lamda: sqrt(2)/2, x: -sqrt(2)/2, y: -sqrt(2)/2}]
+../
+
+# Method2
+from scipy.interpolate import lagrange
+import numpy as np
+ 
+x = np.array([0, 1, 2])
+y = x**3
+poly = lagrange(x, y)
+print(poly)
+
+
+/..
+The following is result
+>>
+2
+3 x - 2 x
+../
